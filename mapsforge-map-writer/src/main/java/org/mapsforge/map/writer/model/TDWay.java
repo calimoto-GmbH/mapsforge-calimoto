@@ -131,8 +131,9 @@ public class TDWay {
      * @param shape       the shape
      * @param wayNodes    the way nodes
      */
-    public TDWay(long id, byte layer, String name, String houseNumber, String ref, Map<Short, Object> tags, byte shape,
-                 TDNode[] wayNodes) {
+    public TDWay(long id, byte layer, String name,
+//                 String houseNumber,
+                 String ref, Map<Short, Object> tags, byte shape, TDNode[] wayNodes) {
         // NOTE old calimoto style
         //    public TDWay(long id, byte layer, String name, String ref, short[] tags, byte shape, TDNode[] wayNodes) {
         // NOTE more old style

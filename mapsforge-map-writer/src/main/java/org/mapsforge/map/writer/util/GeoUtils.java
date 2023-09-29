@@ -45,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -323,15 +324,12 @@ public final class GeoUtils {
         Geometry ret = null;
 
         // TODO: calimoto code
-        short [] tags = way.getTags();
         OSMTagMapping mapping = OSMTagMapping.getInstance();
-
-        for (int i = 0; i < tags.length; i++) {
-
-            OSMTag tag = mapping.getWayTag(tags[i]);
+        for (Entry<Short, Object> tag : way.getTags().entrySet()) {
+            OSMTag osmTag = mapping.getWayTag(tag.getKey());
 
             //checks if it is an osm highway element
-            if (tag.getKey().equalsIgnoreCase("highway")){
+            if (osmTag.getKey().equalsIgnoreCase("highway")){
 
                 // reduce the simplification factor
                 simplificationFactor = simplificationFactor * 0.2;
@@ -342,6 +340,27 @@ public final class GeoUtils {
                 //do nothing, use the simplificationFactor- parameter
             }
         }
+
+        // old calimoto code style
+        //        short [] tags = way.getTags();
+        //        OSMTagMapping mapping = OSMTagMapping.getInstance();
+        //
+        //        for (int i = 0; i < tags.length; i++) {
+        //
+        //            OSMTag tag = mapping.getWayTag(tags[i]);
+        //
+        //            //checks if it is an osm highway element
+        //            if (tag.getKey().equalsIgnoreCase("highway")){
+        //
+        //                // reduce the simplification factor
+        //                simplificationFactor = simplificationFactor * 0.2;
+        //                break;
+        //
+        //            } else {
+        //
+        //                //do nothing, use the simplificationFactor- parameter
+        //            }
+        //        }
 
         Envelope bbox = geometry.getEnvelopeInternal();
         // compute maximal absolute latitude (so that we don't need to care if we
