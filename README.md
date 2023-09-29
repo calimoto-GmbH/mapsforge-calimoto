@@ -1,3 +1,12 @@
+# Disclaimer
+
+This is fork from the calimoto GmbH which is not intended to be merged back into the main repository!
+
+Changes:
+* Removed house numbers from offline maps (The writer doesn't write them anymore)
+* Reduce the simplification factors for highways
+
+
 [![Maven Central](https://img.shields.io/maven-central/v/org.mapsforge/mapsforge-core.svg)](https://repo1.maven.org/maven2/org/mapsforge/)
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](http://www.gnu.org/licenses/lgpl-3.0)
 
