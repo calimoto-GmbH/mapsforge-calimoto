@@ -136,7 +136,10 @@ abstract class BaseTileBasedDataProcessor implements TileBasedDataProcessor, Nod
                     // create new virtual way which represents the outer way
                     // use maxWayID counter to create unique id
                     outerWay = new TDWay(++BaseTileBasedDataProcessor.this.maxWayID, relation.getLayer(),
-                            relation.getName(), relation.getHouseNumber(), relation.getRef(), relation.getTags(),
+                            relation.getName(),
+// TODO: calimoto code
+//                            relation.getHouseNumber(),
+                            relation.getRef(), relation.getTags(),
                             shape, waynodes);
 
                     // add the newly created way to matching tiles
@@ -234,7 +237,10 @@ abstract class BaseTileBasedDataProcessor implements TileBasedDataProcessor, Nod
                         }
                         TDNode[] waynodes = waynodeList.toArray(new TDNode[waynodeList.size()]);
                         // TODO which layer?
-                        innerWay = new TDWay(++BaseTileBasedDataProcessor.this.maxWayID, (byte) 0, null, null, null,
+                        innerWay = new TDWay(++BaseTileBasedDataProcessor.this.maxWayID, (byte) 0,
+                                // TODO: calimoto code
+                                //                                null,
+                                null, null,
                                 waynodes);
                         handleVirtualInnerWay(innerWay);
                         // does not need to be added to corresponding tiles

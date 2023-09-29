@@ -73,7 +73,8 @@ public class TDNode {
         this.latitude = latitude;
         this.longitude = longitude;
         this.elevation = elevation;
-        this.houseNumber = houseNumber;
+        // TODO: calimoto code
+        this.houseNumber = null;
         this.layer = layer;
         this.name = name;
     }
@@ -94,7 +95,8 @@ public class TDNode {
         this.latitude = latitude;
         this.longitude = longitude;
         this.elevation = elevation;
-        this.houseNumber = houseNumber;
+        // TODO: calimoto code
+        this.houseNumber = null;
         this.layer = layer;
         this.name = name;
         this.tags = tags;

@@ -34,6 +34,8 @@ import org.mapsforge.core.model.BoundingBox;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.core.util.LatLongUtils;
 import org.mapsforge.core.util.MercatorProjection;
+import org.mapsforge.map.writer.OSMTagMapping;
+import org.mapsforge.map.writer.model.OSMTag;
 import org.mapsforge.map.writer.model.TDNode;
 import org.mapsforge.map.writer.model.TDWay;
 import org.mapsforge.map.writer.model.TileCoordinate;
@@ -96,10 +98,10 @@ public final class GeoUtils {
             if (!geometry.isValid()) {
                 // this should stop the problem of non-noded intersections that trigger an error when
                 // clipping
-                LOGGER.warning("invalid geometry prior to tile clipping, trying to repair " + way.getId());
+                LOGGER.fine("invalid geometry prior to tile clipping, trying to repair " + way.getId());
                 geometry = JTSUtils.repairInvalidPolygon(geometry);
                 if (!geometry.isValid()) {
-                    LOGGER.warning("invalid geometry even after attempt to fix " + way.getId());
+                    LOGGER.fine("invalid geometry even after attempt to fix " + way.getId());
                 }
             }
             ret = tileBBJTS.intersection(geometry);
@@ -319,6 +321,27 @@ public final class GeoUtils {
     public static Geometry simplifyGeometry(TDWay way, Geometry geometry, byte zoomlevel, int tileSize,
                                             double simplificationFactor) {
         Geometry ret = null;
+
+        // TODO: calimoto code
+        short [] tags = way.getTags();
+        OSMTagMapping mapping = OSMTagMapping.getInstance();
+
+        for (int i = 0; i < tags.length; i++) {
+
+            OSMTag tag = mapping.getWayTag(tags[i]);
+
+            //checks if it is an osm highway element
+            if (tag.getKey().equalsIgnoreCase("highway")){
+
+                // reduce the simplification factor
+                simplificationFactor = simplificationFactor * 0.2;
+                break;
+
+            } else {
+
+                //do nothing, use the simplificationFactor- parameter
+            }
+        }
 
         Envelope bbox = geometry.getEnvelopeInternal();
         // compute maximal absolute latitude (so that we don't need to care if we

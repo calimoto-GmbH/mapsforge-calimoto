@@ -46,8 +46,11 @@ public final class ZoomIntervalConfiguration {
      * @return the standard configuration
      */
     public static ZoomIntervalConfiguration getStandardConfiguration() {
+        // TODO: calimoto code
+        //        return new ZoomIntervalConfiguration(new byte[][]{new byte[]{5, 0, 7}, new byte[]{10, 8, 11},
+        //                new byte[]{14, 12, 21}});
         return new ZoomIntervalConfiguration(new byte[][]{new byte[]{5, 0, 7}, new byte[]{10, 8, 11},
-                new byte[]{14, 12, 21}});
+                new byte[]{14, 13, 21}});
     }
 
     /**

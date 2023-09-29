@@ -35,7 +35,8 @@ public class SpecialTagExtractionResult {
         super();
         this.name = name;
         this.ref = ref;
-        this.housenumber = housenumber;
+        // TODO: calimoto code
+        this.housenumber = null;
         this.layer = layer;
         this.elevation = elevation;
         this.type = type;

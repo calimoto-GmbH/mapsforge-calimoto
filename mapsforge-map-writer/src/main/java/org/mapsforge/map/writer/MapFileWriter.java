@@ -263,19 +263,22 @@ public final class MapFileWriter {
 
     static final Logger LOGGER = Logger.getLogger(MapFileWriter.class.getName());
 
-    static final int MIN_TILE_BUFFER_SIZE = 0xF00000; // 15MB
+    // TODO: calimoto code
+    //    static final int MIN_TILE_BUFFER_SIZE = 0xF00000; // 15MB
+    static final int MIN_TILE_BUFFER_SIZE = 0x3200000; // 50MB
 
     static final int POI_DATA_BUFFER_SIZE = 0xA00000; // 10MB
 
-    static final int TILE_BUFFER_SIZE = 0xA00000; // 10MB
+    //static final int TILE_BUFFER_SIZE = 0xA00000; // 10MB
+    static final int TILE_BUFFER_SIZE = 0x3200000; // 50MB
 
     // private static final int PIXEL_COMPRESSION_MAX_DELTA = 5;
 
     static final int TILES_BUFFER_SIZE = 0x3200000; // 50MB
 
+    //static final int WAY_BUFFER_SIZE = 0x100000; // 10MB
     static final int WAY_BUFFER_SIZE = 0x100000; // 10MB
-
-    static final int WAY_DATA_BUFFER_SIZE = 0xA00000; // 10MB
+    static final int WAY_DATA_BUFFER_SIZE = 0x3200000; // 50MB
 
     // private static final CoastlineHandler COASTLINE_HANDLER = new
     // CoastlineHandler();
@@ -284,12 +287,14 @@ public final class MapFileWriter {
     private static final short BITMAP_COMMENT = 8;
     private static final short BITMAP_CREATED_WITH = 4;
     private static final short BITMAP_DEBUG = 128;
+
     private static final short BITMAP_MAP_START_POSITION = 64;
     private static final short BITMAP_MAP_START_ZOOM = 32;
     private static final short BITMAP_PREFERRED_LANGUAGES = 16;
 
     // bitmap flags for poi and way features
-    private static final short BITMAP_HOUSENUMBER = 64;
+    // NOTE: housenumbers removed
+    //   private static final short BITMAP_HOUSENUMBER = 64;
     private static final short BITMAP_NAME = 128;
 
     // bitmap flags for poi features
@@ -435,9 +440,9 @@ public final class MapFileWriter {
         if (name != null && !name.isEmpty()) {
             infoByte |= BITMAP_NAME;
         }
-        if (housenumber != null && !housenumber.isEmpty()) {
-            infoByte |= BITMAP_HOUSENUMBER;
-        }
+//        if (housenumber != null && !housenumber.isEmpty()) {
+//            infoByte |= BITMAP_HOUSENUMBER;
+//        }
         if (elevation != 0) {
             infoByte |= BITMAP_ELEVATION;
         }
@@ -463,9 +468,9 @@ public final class MapFileWriter {
         if (way.getName() != null && !way.getName().isEmpty()) {
             infoByte |= BITMAP_NAME;
         }
-        if (way.getHouseNumber() != null && !way.getHouseNumber().isEmpty()) {
-            infoByte |= BITMAP_HOUSENUMBER;
-        }
+//        if (way.getHouseNumber() != null && !way.getHouseNumber().isEmpty()) {
+//            infoByte |= BITMAP_HOUSENUMBER;
+//        }
         if (way.getRef() != null && !way.getRef().isEmpty()) {
             infoByte |= BITMAP_REF;
         }
@@ -553,9 +558,9 @@ public final class MapFileWriter {
             writeUTF8(poi.getName(), poiBuffer);
         }
 
-        if (poi.getHouseNumber() != null && !poi.getHouseNumber().isEmpty()) {
-            writeUTF8(poi.getHouseNumber(), poiBuffer);
-        }
+//        if (poi.getHouseNumber() != null && !poi.getHouseNumber().isEmpty()) {
+//            writeUTF8(poi.getHouseNumber(), poiBuffer);
+//        }
 
         if (poi.getElevation() != 0) {
             poiBuffer.put(Serializer.getVariableByteSigned(poi.getElevation()));
@@ -608,9 +613,9 @@ public final class MapFileWriter {
         }
 
         // if the way has a house number, write it to the file
-        if (way.getHouseNumber() != null && !way.getHouseNumber().isEmpty()) {
-            writeUTF8(way.getHouseNumber(), wayBuffer);
-        }
+//        if (way.getHouseNumber() != null && !way.getHouseNumber().isEmpty()) {
+//            writeUTF8(way.getHouseNumber(), wayBuffer);
+//        }
 
         // if the way has a ref, write it to the file
         if (way.getRef() != null && !way.getRef().isEmpty()) {
@@ -855,7 +860,8 @@ public final class MapFileWriter {
             // WRITE POIS
             for (byte zoomlevel = minZoomCurrentInterval; zoomlevel <= maxZoomCurrentInterval; zoomlevel++) {
                 int indexEntitiesPerZoomLevelTable = zoomlevel - minZoomCurrentInterval;
-                List<TDNode> pois = poisByZoomlevel.get(Byte.valueOf(zoomlevel));
+                //List<TDNode> pois = poisByZoomlevel.get(Byte.valueOf(zoomlevel));
+                List<TDNode> pois = poisByZoomlevel.get(zoomlevel);
                 if (pois != null) {
                     for (TDNode poi : pois) {
                         processPOI(poi, currentTileLat, currentTileLon, configuration.isDebugStrings(), poiDataBuffer);
@@ -869,7 +875,8 @@ public final class MapFileWriter {
             for (byte zoomlevel = minZoomCurrentInterval; zoomlevel <= maxZoomCurrentInterval; zoomlevel++) {
                 int indexEntitiesPerZoomLevelTable = zoomlevel - minZoomCurrentInterval;
 
-                List<TDWay> ways = waysByZoomlevel.get(Byte.valueOf(zoomlevel));
+                //List<TDWay> ways = waysByZoomlevel.get(Byte.valueOf(zoomlevel));
+                List<TDWay> ways = waysByZoomlevel.get(zoomlevel);
                 if (ways != null) {
                     List<WayPreprocessingCallable> callables = new ArrayList<>();
                     for (TDWay way : ways) {

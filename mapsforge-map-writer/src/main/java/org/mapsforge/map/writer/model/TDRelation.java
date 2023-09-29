@@ -96,7 +96,8 @@ public class TDRelation {
         return type != null && "multipolygon".equals(type);
     }
 
-    private final String houseNumber;
+    // TODO: calimoto code
+//    private final String houseNumber;
     private final long id;
     private final byte layer;
     private final TDWay[] memberWays;
@@ -121,7 +122,8 @@ public class TDRelation {
         this.id = id;
         this.layer = layer;
         this.name = name;
-        this.houseNumber = houseNumber;
+        // TODO: calimoto code
+//        this.houseNumber = houseNumber;
         this.ref = ref;
         this.tags = tags;
         this.memberWays = memberWays;
@@ -145,12 +147,13 @@ public class TDRelation {
         return true;
     }
 
-    /**
-     * @return the houseNumber
-     */
-    public String getHouseNumber() {
-        return this.houseNumber;
-    }
+    // TODO: calimoto code
+//    /**
+//     * @return the houseNumber
+//     */
+//    public String getHouseNumber() {
+//        return this.houseNumber;
+//    }
 
     /**
      * @return the id

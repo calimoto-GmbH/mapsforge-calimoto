@@ -95,15 +95,19 @@ public class TDWay {
                     }
                 }
 
-                return new TDWay(way.getId(), ster.getLayer(), ster.getName(), ster.getHousenumber(), ster.getRef(),
+                // TODO: calimoto code
+                return new TDWay(way.getId(), ster.getLayer(), ster.getName(), ster.getRef(),
                         knownWayTags, shape, waynodes);
+//                return new TDWay(way.getId(), ster.getLayer(), ster.getName(), ster.getHousenumber(), ster.getRef(),
+//                        knownWayTags, shape, waynodes);
             }
         }
 
         return null;
     }
 
-    private final String houseNumber;
+    // TODO: calimoto code
+//    private final String houseNumber;
     private final long id;
     private boolean invalid;
     private final byte layer;
@@ -121,7 +125,7 @@ public class TDWay {
      * @param id          the id
      * @param layer       the layer
      * @param name        the name if existent
-     * @param houseNumber the house number if existent
+//     * @param houseNumber the house number if existent
      * @param ref         the ref if existent
      * @param tags        the tags (tag map contains optional values)
      * @param shape       the shape
@@ -129,10 +133,15 @@ public class TDWay {
      */
     public TDWay(long id, byte layer, String name, String houseNumber, String ref, Map<Short, Object> tags, byte shape,
                  TDNode[] wayNodes) {
+        // NOTE old calimoto style
+        //    public TDWay(long id, byte layer, String name, String ref, short[] tags, byte shape, TDNode[] wayNodes) {
+        // NOTE more old style
+        //    public TDWay(long id, byte layer, String name, String houseNumber, String ref, short[] tags, byte shape,
+        //                 TDNode[] wayNodes) {
         this.id = id;
         this.layer = layer;
         this.name = name;
-        this.houseNumber = houseNumber;
+        //        this.houseNumber = houseNumber;
         this.ref = ref;
         this.tags = tags;
         this.shape = shape;
@@ -145,15 +154,16 @@ public class TDWay {
      * @param id          the id
      * @param layer       the layer
      * @param name        the name if existent
-     * @param houseNumber the house number if existent
+//     * @param houseNumber the house number if existent
      * @param ref         the ref if existent
      * @param wayNodes    the way nodes
      */
-    public TDWay(long id, byte layer, String name, String houseNumber, String ref, TDNode[] wayNodes) {
-        this.id = id;
+    public TDWay(long id, byte layer, String name, String ref, TDNode[] wayNodes) {
+//    public TDWay(long id, byte layer, String name, String houseNumber, String ref, TDNode[] wayNodes) {
+            this.id = id;
         this.layer = layer;
         this.name = name;
-        this.houseNumber = houseNumber;
+//        this.houseNumber = houseNumber;
         this.ref = ref;
         this.wayNodes = wayNodes;
     }
@@ -176,12 +186,12 @@ public class TDWay {
         return true;
     }
 
-    /**
-     * @return the house number
-     */
-    public String getHouseNumber() {
-        return this.houseNumber;
-    }
+//    /**
+//     * @return the house number
+//     */
+//    public String getHouseNumber() {
+//        return this.houseNumber;
+//    }
 
     /**
      * @return the id

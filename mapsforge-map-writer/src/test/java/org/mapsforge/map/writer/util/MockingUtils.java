@@ -45,7 +45,10 @@ public class MockingUtils {
         private final boolean area;
 
         public MockTDWay(TDNode[] wayNodes, boolean area) {
-            super(0, (byte) 0, null, null, null, null, (byte) 0, wayNodes);
+            // TODO: calimoto code
+            super(0, (byte) 0, null,
+//                    null,
+                    null, null, (byte) 0, wayNodes);
             this.area = area;
         }
 
