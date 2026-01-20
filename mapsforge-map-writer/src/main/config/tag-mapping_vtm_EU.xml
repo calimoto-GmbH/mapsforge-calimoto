@@ -128,6 +128,7 @@
 		<osm-tag key="highway" value="motorway" zoom-appear="6" />
 		<osm-tag key="highway" value="motorway_link" zoom-appear="10" />
 		<osm-tag key="highway" value="primary" zoom-appear="7" />
+		<osm-tag key="highway" value="construction" zoom-appear="7" />
 		<osm-tag key="highway" value="primary_link" zoom-appear="7" />
 		<osm-tag key="highway" value="raceway" zoom-appear="12" />
 		<osm-tag key="highway" value="residential" zoom-appear="12" />
