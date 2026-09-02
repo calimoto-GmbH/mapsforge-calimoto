@@ -170,6 +170,16 @@
 		<osm-tag key="highway" value="unclassified_urban" zoom-appear="11" />
 		<osm-tag key="highway" value="trunk_urban" zoom-appear="6" />
 		<osm-tag key="highway" value="trunk_link_urban" zoom-appear="6" />
+<!-- calimoto specific URBAN CENTER Roads, same zoom-appear as their URBAN variants -->
+		<osm-tag key="highway" value="primary_urban_center" zoom-appear="6" />
+		<osm-tag key="highway" value="primary_link_urban_center" zoom-appear="6" />
+		<osm-tag key="highway" value="secondary_urban_center" zoom-appear="8" />
+		<osm-tag key="highway" value="secondary_link_urban_center" zoom-appear="8" />
+		<osm-tag key="highway" value="tertiary_urban_center" zoom-appear="9" />
+		<osm-tag key="highway" value="tertiary_link_urban_center" zoom-appear="9" />
+		<osm-tag key="highway" value="unclassified_urban_center" zoom-appear="11" />
+		<osm-tag key="highway" value="trunk_urban_center" zoom-appear="6" />
+		<osm-tag key="highway" value="trunk_link_urban_center" zoom-appear="6" />
 	</ways>
 
 	<!-- NATURAL / WATERWAY TAGS -->
